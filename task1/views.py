@@ -1,7 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from .forms import UserRegister
-from .models import Buyer, Game
+from .models import Buyer, Game, News
+from django.core.paginator import Paginator
+
+
+def news(request: HttpRequest):
+    posts = News.objects.all().order_by("date")
+    paginator = Paginator(posts, 3)
+    page_number = request.GET.get("page")
+    new_s = paginator.get_page(page_number)
+    context = {
+        "news": new_s
+    }
+    return render(request, "news.html", context)
 
 
 def platform_page(request: HttpRequest):
