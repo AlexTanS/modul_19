@@ -1,0 +1,14 @@
+{% extends 'menu.html' %}
+
+{% block title %}{{ pagename }}{% endblock %}
+
+{% block pagename %}{{ pagename }}{% endblock %}
+
+{% block menu %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ text }}</h2>
+{% endblock %}
+
